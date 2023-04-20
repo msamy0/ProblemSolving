@@ -1,6 +1,10 @@
 //find the most frequent memeber in a given array of integers
 // if there are more than one most frequent members, return the smallest one
 // if there is no most frequent member, return any thing
+#include <stdio.h>
+#ifdef _WIN32
+    #define WINPAUSE system("pause")
+#endif
 int findFrequent(int arr[], int n)
 {
     int max_count =0;
@@ -30,4 +34,10 @@ int findFrequent(int arr[], int n)
     }
     return index_of_max_count;
 
+}
+int main ()
+{
+    printf("Hello World");
+    getchar();
+    return 0;
 }
