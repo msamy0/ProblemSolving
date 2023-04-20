@@ -1,0 +1,38 @@
+EDF list of creations: 
+    1   create a guard macro for all EDF implementations
+    2   create xReadyTasksListEDF to handle task sorting in EDF scheduler
+    3   edit task initialization function called prvInitialiseTaskLists(void) to initialize new xReadyTasksListEDF
+    4   edit macro that add task to ready list prvAddTaskToReadyList() to add tasks to xReadyTasksListEDF based on its deadline
+    5   create a new parameter in the TCB block named as xTaskPeriod to hold the task execution period to be used later
+        in the deadline calculations
+    6   add new parameter to function xTaskPeriodicCreate(<old parameters>, TickType_t period) which will be the
+        task period created in [5] "pxNewTCB->xTaskPeriod=period;"
+    7   insert period value in the generic list
+    8   edit vTaskStartScheduler() to create the ideal task to have the most far deadline in the list to be scheduled in the
+        last position inside the xReadyTasksListEDF
+    9   change the vTaskSwitchContext() to take the head of the xReadyTasksListEDF
+    10  build and edit all errors in the code
+    11  operation will not work at this point as you have to add some additional implementations 
+
+
+Hints:
+-   edit only on tasks.c file in RTOS
+-   3 steps to be added
+                        1- ideal task always have to be always updated to be the largest deadline
+                        2- xTaskIncrementTick() >> this task increment tick, evaluate delayedList-> if YES ( remove it from
+                            delayList and put it into ReadyList) so make sure to calculate new dead line to add it in proper 
+                            position in the xReadyList
+                        3- uxListRemove(address) macro removes the task from the list it is presented at only by knowing
+                            its xStateListItem ............ (void) uxListRemove( & (pxTCB->xStateListItem) );
+                            make sure to re-evaluate the task deadline 
+                        4- xGenericListItem pointer points to the list which the task is in . old name and changed now to be
+                            xStateListItem
+                        5- vListInsert() is macro take List parameter and pointer to xStateListItem inside TCB block to add task in specific list
+                        6- listSET_LIST_ITEM_VALUE() will be used to set any item in any list, we will use it to edit the deadline item
+
+Testing: 
+    implement EDF 
+    verify by design and task system 
+    verify using analytical , offline simson and online run time 
+    submit report and comment you work 
+    bonus to use the runtime analysis feature in free RTOS after editing it to gather data from xReadyTasksListEDF instead of the original list
