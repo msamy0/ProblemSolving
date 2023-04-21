@@ -3,7 +3,12 @@
     "C_Cpp.autocomplete": "default",
     "files.associations": {
         "stdio.h": "c",
-        "math.h" : "c"
+        "math.h": "c",
+        "iostream": "cpp",
+        "initializer_list": "c",
+        "type_traits": "c",
+        "xstring": "c",
+        "xutility": "c"
     },
 
 }
