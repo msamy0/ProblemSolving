@@ -40,7 +40,6 @@ void InsertionSort_Shift( T a[], int size)
         j--;
     }
     a[j+1] = temp;
-
   }
 }
 int main() {
