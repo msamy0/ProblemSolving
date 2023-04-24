@@ -49,25 +49,26 @@ int compareTwoStrings(int *DictionaryHashTable ,int stringLen, char* query) {
 int* stringAnagram(int dictionary_count, char** dictionary, int query_count, char** query, int* result_count) {
     
     //create array of numbers to hold result of each query
-    int * result_array = malloc(query_count * sizeof(int));
-    for (int i = 0 ; i < query_count ; i ++)
-        result_array[i] = 0; 
-    
+    int * result_array = calloc(query_count , sizeof(int));
+
     //create hash table for each word in dictionary
+    //Allocate memory for 2D array
     int **DictionaryHashTable = malloc(dictionary_count * sizeof(int*));
+
+    //loop for each row in tha matrix and allocate 26 item for each row and initialize them to 0 using calloc()
     for (int i = 0 ; i < dictionary_count ; i ++)
+    {
+        //using calloc() to create and initialize all elements to 0
         DictionaryHashTable[i] = calloc(26 , sizeof(int));
-    
-    //fill hash table for each word in dictionary
-    for (int i = 0 ; i < dictionary_count ; i ++)
-    {   
-        //for each letter in word in dictionary mark in front of its corresponding number in hash table
-        //note that we ++ the value of the letter in the hash table to save also number of occurences in each word
-        for (int j = 0 ; j < strlen(dictionary[i]) ; j++)
+        //loop through each letter in the word and increment the corresponding index in the hash table
+        //terminate when reach end of word (charcter '\0')
+        for (int j = 0 ; dictionary[i][j] != '\0' ; j++)
         {
             DictionaryHashTable[i][dictionary[i][j] - 'a']++;
         }
+    //loop to the next word in dictionary and repeat the process    
     }
+    
 
     //for each query word check if it is anagram of any word in dictionary
     for (int i = 0 ; i < query_count ; i ++)
