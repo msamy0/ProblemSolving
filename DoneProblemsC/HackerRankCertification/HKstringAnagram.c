@@ -71,46 +71,37 @@ int* stringAnagram(int dictionary_count, char** dictionary, int query_count, cha
     
 
     //for each query word check if it is anagram of any word in dictionary
-    for (int i = 0 ; i < query_count ; i ++)
-    {
-        //get length of query word
-        int stringLen = strlen(query[i]); 
-        int counterOfMatches = 0;
+    for (int i = 0 ; i < query_count ; i ++) {
+        //create hash table for current query word to optimize the search process inside the dictionary
+        int currentQueryHash[26] = {0};
+        for (int l = 0 ; query[i][l] != '\0' ; l++)
+            currentQueryHash[ (query[i][l] - 'a') ]++;
 
         //check query word against each word in dictionary using dictionary hash table
-        for(int j = 0; j < dictionary_count; j++) 
-        {  
-            //only loop check letters matching if length of query word is equal to length of dictionary word
-            if ( strlen(dictionary[j]) == stringLen)
-            {
-                //check if each letter in query word is in currer dictionary word hash table
-                int flag=1;
-                int tempHash[26] = {0};
-                for (int l = 0 ; l < 26 ; l++)
-                    tempHash[l] = DictionaryHashTable[j][l];
-
-                for (int k = 0; k < stringLen; k++)
-                {
-                    //if letter is not in dictionary word hash table then break and check next word in dictionary
-                    //break is coupled with flag equal to 0, which in turn will not increment counterOfMatches
-                    //else if flag is kept 1 then counterOfMatches will be incremented
-                    if (tempHash[query[i][k] - 'a'] == 0)
-                    {
-                        flag=0;
+        for(int j = 0; j < dictionary_count; j++) {
+            //if two word have different length then they are not anagram
+            if ( strlen(dictionary[j]) == strlen(query[i])) {
+                //compare two words using hash table
+                int flagOfMatching=1;
+                //loop in reverse to enhance performance b comparing to zero
+                //add more if check condition after the loop for index 0 comparison as the loop will terminate before comparing it
+                int k = 25;
+                for (k = 25; k != 0; k--) {
+                    if (currentQueryHash[k] != DictionaryHashTable[j][k]) {
+                        flagOfMatching=0;
                         break;
                     }
-                    else
-                    {
-                        tempHash[query[i][k] - 'a']--;
-                    }
                 }
-                if (flag == 1)
-                    counterOfMatches++;
+                if (currentQueryHash[k] != DictionaryHashTable[j][k]) {
+                    flagOfMatching=0;
+                }
+
+                //if the flag still 1 then the two words are anagram
+                if (flagOfMatching == 1) {
+                    result_array[i]++;
+                }   
             }
         }
-        //save result of query word in result array
-        result_array[i] = counterOfMatches;
-
     //loop to the next query word and repeat the process
     }
 
