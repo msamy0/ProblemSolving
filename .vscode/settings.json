@@ -28,7 +28,9 @@
         "xloctime": "c",
         "xmemory": "c",
         "xtree": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "time.h": "c",
+        "assert.h": "c"
     },
 
 }

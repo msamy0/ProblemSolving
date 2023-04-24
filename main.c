@@ -8,7 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>       // for clock_t, clock(), CLOCKS_PER_SEC
 
+#define USE_EXE_TIME_CALC 0
 /*
 int compareTwoStrings(int stringLen, char *query , char* dictionary)
 {
@@ -117,6 +119,11 @@ int* stringAnagram(int dictionary_count, char** dictionary, int query_count, cha
 }
 int main()
 {
+    #if USE_EXE_TIME_CALC == 1
+        double time_spent = 0.0;
+        clock_t begin = clock();
+    #endif
+
     int wordsLen = 100;
     int dictionary_count = 10;
     char**dictionary = (char**) malloc(dictionary_count * sizeof(char*));
@@ -133,14 +140,19 @@ int main()
     dictionary[8] = "qqqqqqq";
     dictionary[9] = "tttttttttt";
 
-    int query_count = 1;
+    int query_count = 8;
     char ** query = (char**) malloc(query_count * sizeof(char*));
     for (int i = 0 ; i < query_count ; i ++)
         query[i] = (char*) malloc(wordsLen * sizeof(char));
     query[0] = "tttttttttt";
-
-
-    
+    query[1] = "qwertyuiop";
+    query[2] = "asdfghjkl";
+    query[3] = "zxcvbnm";
+    query[4] = "qqqqqqq";
+    query[5] = "qqqqqqqq";
+    query[6] = "ooss";
+    query[7] = "mdaha";
+   
     int* result_count = malloc(sizeof(int));
     int* result = stringAnagram(dictionary_count, dictionary, query_count, query, result_count);
     for (int i = 0 ; i < query_count ; i ++)
@@ -148,8 +160,14 @@ int main()
         printf("%s  ", query[i]);
         printf("%d \n", result[i]);
     }
-        
 
+    #if USE_EXE_TIME_CALC == 1
+        clock_t end = clock();
+        time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+        printf("time spent = %f\n",time_spent);
+    #endif
+    
+    //pause terminal
     int r=0;
     scanf("%d", &r);
    
