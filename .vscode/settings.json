@@ -30,7 +30,13 @@
         "xtree": "c",
         "string.h": "c",
         "time.h": "c",
-        "assert.h": "c"
+        "assert.h": "c",
+        "cstdlib": "c",
+        "map": "cpp",
+        "algorithm": "cpp",
+        "utility": "cpp",
+        "forward_list": "c",
+        "stddef.h": "c"
     },
 
 }

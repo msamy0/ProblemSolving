@@ -36,3 +36,6 @@ Testing:
     verify using analytical , offline simson and online run time 
     submit report and comment you work 
     bonus to use the runtime analysis feature in free RTOS after editing it to gather data from xReadyTasksListEDF instead of the original list
+
+
+- Optimize most array exchange
