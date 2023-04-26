@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 long* findSum(int numbers_count, int* numbers, int queries_rows, int queries_columns, int** queries, int* result_count) {
+    
     long * ResArray = (long*)malloc(queries_rows * (sizeof (long)));
     for(int i = 0 ; i < queries_rows ; i++)
         ResArray[i] = 0;
