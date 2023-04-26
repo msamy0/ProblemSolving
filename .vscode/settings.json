@@ -36,7 +36,8 @@
         "algorithm": "cpp",
         "utility": "cpp",
         "forward_list": "c",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "cstring": "c"
     },
 
 }
