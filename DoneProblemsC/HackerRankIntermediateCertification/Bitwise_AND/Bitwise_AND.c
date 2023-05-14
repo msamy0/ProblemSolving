@@ -22,52 +22,43 @@ bool power2(int n)
 {
   return (n != 0) && ((n & (n - 1)) == 0);
 }
-//summtion of sorted array that least element is 1 and max element is n
+
+// summtion of sorted array that least element is 1 and max element is n
 long sumOfSortedArray(int n)
 {
   return ((long)n * (n + 1)) / 2;
 }
 
+// function to count the number of pairs
 long countPairs(int arr_count, int *arr)
 {
   int freqDictSize = (4095) + 1;
   int *freqDict = (int *)calloc((freqDictSize), sizeof(int));
+
   for (int i = 0; i < arr_count; i++)
-  {
     freqDict[arr[i]]++;
-  }
 
   long counterOfPairs = 0;
-  int i = 0;
-  while (i < freqDictSize)
+
+  for (int i = 0; i < freqDictSize; i++)
   {
     if (freqDict[i] == 0)
-    {
-      i++;
       continue;
-    }
-    int j = i;
-    while (j < freqDictSize)
+
+    for(int j = i; j < freqDictSize; j++)
     {
       if (freqDict[j] == 0)
-      {
-        j++;
         continue;
-      }
+
       if (power2(i & j) == 1)
       {
         if (i == j)
-        {
           counterOfPairs += sumOfSortedArray (freqDict[i] - 1);
-        }
+
         else
-        {
           counterOfPairs += freqDict[i] * freqDict[j] ;
-        }
       }
-      j++;
     }
-    i++;
   }
   return counterOfPairs;
 }
