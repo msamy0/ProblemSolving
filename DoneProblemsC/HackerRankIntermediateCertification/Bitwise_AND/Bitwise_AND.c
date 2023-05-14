@@ -15,6 +15,16 @@ the algorithm is like following
    to the counter. if the two elements are equal then add the sum of sorted array of the number of elements - 1 to the counter. if the two elements
    are not equal then add the multiplication of the two elements to the counter.
 6- return the counter
+
+Example:
+arr =       [1, 2, 1, 2, 4, 8, 4, 8]
+
+indexing---> 0  1  2  3  4  5  6  7  8 
+freqDict =  [0, 2, 2, 0, 2, 0, 0, 0, 2]
+
+elemnts to loop over are  1, 2, 4, 8
+                          2  2  2  2
+
 */
 
 // function to check if the number is power of 2 or not
@@ -66,8 +76,8 @@ long countPairs(int arr_count, int *arr)
 int main()
 {
 // test case of countPairs fucntion
-#define arr_count 20
-int arr[arr_count] = { 1, 2, 1, 2, 4, 8, 4, 8, 16, 32, 16, 32, 64, 128, 64, 128, 256, 512, 256, 512 };
+#define arr_count 8
+int arr[arr_count] = {1, 2, 1, 2, 4, 8, 4, 8};
 long result = countPairs(arr_count, arr);
 printf("%ld\n", result);
 int r = 0;
