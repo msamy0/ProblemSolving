@@ -2,12 +2,31 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+//TestCases
+/* 
+0 -> 25
+1 -> 81
+2 -> 81
+3 -> 361
+4 -> 361
+5 -> 45158400
+6 -> 21150801
+7 -> 189695529
+8 -> 25
+9 -> 1000000000000
+10 -> 6768900127521
+11 -> 7487053117504
+12 -> 4036848474481
+13 -> 7430459936769
+14 -> 1000000000000000000
+*/
+
 
 /*
 sum = (a-b)^2
 a --> summition of even  indexed elemnts in the sub array 
 b --> summition of odd indexed elements  in the sub array
-lets push the negative to the secodn part
+lets push the negative to the second part
 sum = (a+(-b))^2  --> and thats why we are inverting odd numbers in the first for loop :D 
 now it is normal maximum subarray problem, let c = -b
 sum = (a+c)^2

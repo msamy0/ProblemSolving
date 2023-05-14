@@ -37,7 +37,9 @@
         "utility": "cpp",
         "forward_list": "c",
         "stddef.h": "c",
-        "cstring": "c"
+        "cstring": "c",
+        "tuple": "c",
+        "stdbool.h": "c"
     },
 
 }
