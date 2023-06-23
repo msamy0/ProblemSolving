@@ -6,41 +6,77 @@
 #include <stdbool.h>
 #include <string.h>
 #include <limits.h>
+#include <stdint.h>
 
-
-#define M 1000000007
-int renameFile(char *newName, char *oldName){
-    int oldNameLen = strlen(oldName);
-    int newNameLen = strlen (newName); 
-    long* subStringOccArr = (long*)calloc(oldNameLen +1 , sizeof(long));
-    long* globalOccArr    = (long*)calloc(oldNameLen +1 , sizeof(long));    
-    for (int i = 0 ; i < oldNameLen +1 ; i++)
-        globalOccArr[i] = 1;
-    for(int i = 1 ; i < newNameLen+1 ; i++)
-    {
-        for(int k = 0 ; k < oldNameLen+1 ; k++)
-            subStringOccArr[k] = 0;
-        for (int j = i ; j < oldNameLen+1 ; j++)
-        {
-            subStringOccArr[j] = subStringOccArr[j-1];
-            if(newName[i-1] == oldName[j-1])
-                subStringOccArr[j] += globalOccArr[j];
-        }
-        for (int k = 0 ; k < oldNameLen+1 ; k++)
-            globalOccArr[k] = subStringOccArr[k];
-    }
-    return globalOccArr[oldNameLen] % M;
-
-}
-int main()
+/*
+int const print()
 {
-  // test cases for renameFile
-  char *newName = "aba";
-  char *oldName = "ababa";
-  printf("%d\n", renameFile(newName, oldName));
+    printf("AA");
+    int r = 0;
+    scanf("%d", &r);
+    return r;
+}
+*/
+
+/*
+//24
+typedef struct {
+unsigned int x;
+unsigned char y;
+struct tPOSITION* NextPosition;
+}tPOSITION;
+tPOSITION p1 = {3};
+tPOSITION p2 = {4,5};
+tPOSITION p3 = {5};
+
+p1.NextPosition = &p2;
+p2.NextPosition = &p3;
+printf("%d, %i, %i\n", p1.y, p2.NextPosition==&p3, (&p3)->x);
+*/
+
+/*
+    uint32_t x = 2;
+    uint32_t* ptr = &x;
+    static uint32_t i = x;
+
+    printf("%i, %i, %i\n", *ptr, i, x);
+    //compilation error
+*/
+
+/*
+//it is gonna work as x = (n++,n) is accepted in C syntax just like x = ++n;
+void reverse(int i)
+{
+if (i> 5)
+    return;
+printf("%d", i);
+return reverse((i++,i));
+}
+
+int main(void) {
+reverse(1);
 
 
-  int r = 0;
-  scanf("%d", &r);
-  return 0;
+    int r = 0;
+    scanf("%d", &r);
+    
+    return 0;
+}
+*/
+
+#include <stdio.h>
+void solve() {
+    int first = 10, second = 20;
+    int third = first + second;
+    {
+        int third = second - first;
+        printf("%d ", third);
+    }
+    printf("%d", third);
+}
+int main() {
+	#ifdef HELLO
+        printf("Hello, World!\n");
+    #endif
+	return 0;
 }
